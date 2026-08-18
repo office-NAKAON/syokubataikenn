@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1時間目ワークシート | 職場体験学習 事前指導</title>
+  <style>
+    :root {
+      --navy: #12345b;
+      --blue: #1d5e9f;
+      --pale-blue: #eaf3fb;
+      --yellow: #fff8df;
+      --red: #b42318;
+      --text: #1d2733;
+      --muted: #526171;
+      --line: #c5ced8;
+      --blank: #1d5e9f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #eef2f6;
+      font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .toolbar p { margin: 0; font-size: 0.9rem; }
+
+    .toolbar button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 5px;
+      padding: 8px 16px;
+      background: #fff;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .sheet, .answers {
+      width: min(100% - 24px, 210mm);
+      margin: 16px auto;
+      padding: 18mm 16mm 14mm;
+      background: #fff;
+      box-shadow: 0 2px 12px rgb(18 52 91 / 12%);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--navy);
+    }
+
+    .lesson-label {
+      margin: 0 0 2px;
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.35;
+    }
+
+    .goal {
+      margin: 6px 0 0;
+      font-size: 0.92rem;
+    }
+
+    .meta {
+      min-width: 210px;
+      border: 1.5px solid var(--navy);
+      font-size: 0.92rem;
+    }
+
+    .meta td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .meta tr:last-child td { border-bottom: 0; }
+
+    .meta .label {
+      width: 2.4em;
+      background: var(--pale-blue);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .blank, .short-blank, .tiny-blank {
+      display: inline-block;
+      min-width: 4.2em;
+      margin: 0 2px;
+      padding: 0 4px;
+      border: 0;
+      border-bottom: 1.5px solid var(--blank);
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      text-align: center;
+    }
+
+    .short-blank { min-width: 2.6em; }
+    .tiny-blank { min-width: 1.8em; }
+
+    .line {
+      display: block;
+      width: 100%;
+      margin: 4px 0 8px;
+      padding: 2px 4px;
+      border: 0;
+      border-bottom: 1.5px solid var(--blank);
+      background: transparent;
+      font: inherit;
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      padding: 4px 10px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 1.05rem;
+    }
+
+    h3 {
+      margin: 12px 0 6px;
+      font-size: 0.98rem;
+    }
+
+    p, ol, ul { margin: 0 0 8px; }
+    ol { padding-left: 1.4em; }
+    li + li { margin-top: 6px; }
+
+    .speech {
+      margin: 8px 0 12px;
+      padding: 10px 12px;
+      background: var(--pale-blue);
+      border-radius: 6px;
+    }
+
+    .warn {
+      margin: 8px 0 0;
+      padding: 10px 12px;
+      background: #fdecea;
+      border: 1.5px solid #f3c0bb;
+      border-radius: 6px;
+    }
+
+    .warn strong { color: var(--red); }
+
+    .check-list {
+      display: grid;
+      gap: 6px;
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      display: grid;
+      grid-template-columns: 1.2em 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .box {
+      display: inline-block;
+      width: 1.05em;
+      height: 1.05em;
+      margin-top: 0.25em;
+      border: 1.5px solid var(--navy);
+      background: #fff;
+    }
+
+    .note {
+      min-height: 4.2em;
+      width: 100%;
+      padding: 8px;
+      border: 1.5px dashed var(--line);
+      border-radius: 4px;
+      resize: vertical;
+      font: inherit;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .answers h1 { font-size: 1.3rem; }
+    .answers .key { color: var(--blue); font-weight: 700; }
+
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet, .answers {
+        width: auto;
+        margin: 0;
+        padding: 8mm 10mm;
+        box-shadow: none;
+      }
+      .sheet { page-break-after: always; }
+      .blank, .short-blank, .tiny-blank, .line, .note {
+        border-bottom-color: #333;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <p>職場体験学習 事前指導　1時間目ワークシート</p>
+    <button type="button" onclick="window.print()">印刷する</button>
+  </div>
+
+  <article class="sheet">
+    <header>
+      <div>
+        <p class="lesson-label">下関市立垢田中学校　2年　職場体験学習 事前指導</p>
+        <h1>1時間目　社会人としての心構えとマナー</h1>
+        <p class="goal">【ゴール】職場体験の目的を理解し、社会人としての基本的なマナーを身に付ける。</p>
+      </div>
+      <table class="meta" aria-label="記入欄">
+        <tr><td class="label">組</td><td>　　　組</td></tr>
+        <tr><td class="label">番</td><td>　　　番</td></tr>
+        <tr><td class="label">氏名</td><td></td></tr>
+      </table>
+    </header>
+
+    <h2>1. 職場体験学習の目的</h2>
+    <p>次の文の空欄をうめなさい。</p>
+    <ol>
+      <li>
+        目的：地域で働く方々と接することで、<input class="blank" aria-label="空欄1">や<input class="blank" aria-label="空欄2">への関心を深め、将来の<input class="blank" aria-label="空欄3">や<input class="blank" aria-label="空欄4">について<input class="blank" aria-label="空欄5">に考える。
+      </li>
+      <li>
+        心がまえ：「<input class="short-blank" aria-label="空欄6">」の職場に交じらせていただくという<input class="blank" aria-label="空欄7">の気持ちを持つ。適当にやるのではなく、<input class="blank" aria-label="空欄8">で臨むこと。
+      </li>
+    </ol>
+
+    <h2>2. ビジネスの基本マナー</h2>
+    <ol>
+      <li>
+        あいさつ：職場に入るときは、相手の<input class="short-blank" aria-label="空欄9">を見て、<input class="blank" aria-label="空欄10">でさわやかに挨拶する。
+      </li>
+      <li>
+        自分のあいさつを完成させ、声に出して練習しよう。
+        <div class="speech">
+          「おはようございます（こんにちは）！垢田中学校２年生の
+          <input class="blank" style="min-width:8em" aria-label="自分の氏名">
+          です。本日、職場体験学習でお世話になります。よろしくお願いします。」
+        </div>
+      </li>
+      <li>
+        礼の仕方：卒業式のときのように、腰を<input class="tiny-blank" aria-label="空欄11">度に折るように意識する。
+      </li>
+      <li>
+        部屋への出入り：入室時は<input class="blank" aria-label="空欄12">をして「どうぞ」と言われたら「<input class="blank" aria-label="空欄13">。垢田中学校○○○○入ります」と言って一礼する。退室時も一礼して「<input class="blank" aria-label="空欄14">」と伝え、ドアを<input class="blank" aria-label="空欄15">閉める。
+      </li>
+      <li>
+        お客様への対応：従業員の方だけでなく、お客様や取引先の方とすれ違う際にも、<input class="blank" aria-label="空欄16">明るく<input class="short-blank" aria-label="空欄17">挨拶や会釈をする。
+      </li>
+    </ol>
+
+    <h2>3. 言葉遣いと「聴く」姿勢</h2>
+    <ol>
+      <li>
+        必ず使う言葉を、授業で確認した中から３つ書きなさい。
+        <input class="line" aria-label="使う言葉1">
+        <input class="line" aria-label="使う言葉2">
+        <input class="line" aria-label="使う言葉3">
+      </li>
+      <li>
+        絶対に使わない言葉（タメ口・友達言葉）の例を、授業で確認した中から３つ書きなさい。
+        <input class="line" aria-label="使わない言葉1">
+        <input class="line" aria-label="使わない言葉2">
+        <input class="line" aria-label="使わない言葉3">
+      </li>
+      <li>
+        指示の聴き方：指示を受けるときは必ず<input class="blank" aria-label="空欄18">と<input class="short-blank" aria-label="空欄19">を持ち、<input class="short-blank" aria-label="空欄20">を取りながら聴くこと。
+      </li>
+    </ol>
+
+    <h2>4. プライバシーと情報管理（超重要）</h2>
+    <div class="warn">
+      <p><strong>秘密保持の義務</strong>：銀行、病院、市役所などで体験中に知った仕事内容、データ、お客様の個人情報（名前や顔など）は、学校の<input class="blank" aria-label="空欄21">の人に絶対に<input class="blank" aria-label="空欄22">。</p>
+      <p style="margin-bottom:0"><strong>SNSの全面禁止</strong>：Instagram、LINE、X、TikTokなどへの投稿は、文字だけでも<input class="blank" aria-label="空欄23">。「○○に職場体験にきた！」という文章、職場の写真、制服姿の自撮りなども絶対に投稿してはいけません。</p>
+    </div>
+
+    <h2>5. 今日の確認・ふりかえり</h2>
+    <p>できたことにチェックを入れなさい。</p>
+    <ul class="check-list">
+      <li><span class="box" aria-hidden="true"></span><span>職場体験の目的と心がまえを説明できる。</span></li>
+      <li><span class="box" aria-hidden="true"></span><span>自分のあいさつを、目を見て大きな声で言える。</span></li>
+      <li><span class="box" aria-hidden="true"></span><span>入室・退室の言い方と礼の仕方を身に付けた。</span></li>
+      <li><span class="box" aria-hidden="true"></span><span>敬語を使い、メモを取りながら指示を聴くことを理解した。</span></li>
+      <li><span class="box" aria-hidden="true"></span><span>個人情報とSNSについてのルールを守ると約束できる。</span></li>
+    </ul>
+    <p style="margin-top:12px">今日一番大切だと思ったことを、自分の言葉で書きなさい。</p>
+    <textarea class="note" rows="3" aria-label="ふりかえり"></textarea>
+    <p class="footer-note">※空欄は授業で確認した言葉を記入すること。印刷して手書きで取り組んでもよい。</p>
+  </article>
+
+  <article class="answers">
+    <header>
+      <div>
+        <p class="lesson-label">教員用　解答例（生徒には配らない）</p>
+        <h1>1時間目ワークシート　解答例</h1>
+      </div>
+    </header>
+    <ol>
+      <li>目的：<span class="key">職業</span>／<span class="key">勤労</span>／<span class="key">生き方</span>／<span class="key">進路</span>／<span class="key">主体的</span></li>
+      <li>心がまえ：<span class="key">プロ</span>／<span class="key">感謝</span>／<span class="key">真剣勝負</span></li>
+      <li>あいさつ：<span class="key">目</span>／<span class="key">大きな声</span></li>
+      <li>礼：<span class="key">90</span>度</li>
+      <li>出入り：<span class="key">ノック</span>／<span class="key">失礼します</span>／<span class="key">失礼しました</span>／<span class="key">そっと</span></li>
+      <li>お客様：<span class="key">立ち止まって</span>／<span class="key">先に</span></li>
+      <li>使う言葉の例：「はい」「〜です」「〜ます」「ありがとうございます」「すみません。もう一度お願いします」「○○が完了しました」</li>
+      <li>使わない言葉の例：「ていうか」「〜的」「びみょう」「マジ」「チャリ」「うざい」</li>
+      <li>指示の聴き方：<span class="key">メモ帳</span>／<span class="key">ペン</span>／<span class="key">メモ</span></li>
+      <li>秘密保持：<span class="key">外</span>／<span class="key">話してはいけません</span>（「話さない」等も可）</li>
+      <li>SNS：<span class="key">一切禁止</span></li>
+    </ol>
+  </article>
+</body>
+</html>
