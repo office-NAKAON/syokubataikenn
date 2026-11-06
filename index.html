@@ -66,6 +66,7 @@
 
     nav ul {
       display: flex;
+      align-items: center;
       gap: 4px 20px;
       flex-wrap: wrap;
       width: min(100% - 32px, 960px);
@@ -74,7 +75,9 @@
       list-style: none;
     }
 
+    nav li + li { margin-top: 0; }
     nav a { font-weight: 700; text-decoration: none; }
+    nav a:visited { color: var(--blue); }
     nav a:hover, nav a:focus-visible { text-decoration: underline; }
 
     main { padding: 32px 0 48px; }
